@@ -17,5 +17,5 @@ create table user (
 	experience int not null,
 	performance int not null,
 	life int not null,
-	moderators varchar(255)
+	moderators varchar(500)
 );
