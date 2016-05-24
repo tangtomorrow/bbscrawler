@@ -12,12 +12,14 @@ public class MySQLPipeline implements Pipeline {
 
 	public void process(ResultItems resultItems, Task task) {
 		User user = resultItems.get("user");
-		
+
 		IUserDAO userDAO = new UserDAOImpl();
-		// TODO 去重
-		
-		userDAO.insertUser(user);
-		
+		if (userDAO.findUserByUserid(user.getUserid()) == null) {
+			userDAO.insertUser(user);
+		} else {
+			System.out.println(user.getUserid());
+		}
+
 	}
 
 }

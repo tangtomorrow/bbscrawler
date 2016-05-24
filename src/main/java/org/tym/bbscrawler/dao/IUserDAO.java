@@ -4,4 +4,6 @@ import org.tym.bbscrawler.model.User;
 
 public interface IUserDAO {
 	public void insertUser(User user);
+	
+	public User findUserByUserid(String userid); 
 }

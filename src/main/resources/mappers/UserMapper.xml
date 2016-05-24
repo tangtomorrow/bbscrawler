@@ -55,11 +55,14 @@
 			#{moderators,jdbcType=VARCHAR}
 		)
 	</insert>
-	
-	<!-- 	
-	<select id="findCommitByRevisionNo" parameterType="String" resultMap="commitResultMap" >
-		select * from commit where revisionNo=#{revisionNo}
+	 
+	 <select id="findUserByUserid" parameterType="String" resultMap="userResultMap" >
+		select 
+		<!-- 
+		(id,userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators) 
+		 -->
+		 *
+		from user where userid=#{userid}
 	</select>
-	 -->
 	
 </mapper>

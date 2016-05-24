@@ -24,4 +24,27 @@ public class UserDAOImpl implements IUserDAO {
 		}
 	}
 
+	@Override
+	public User findUserByUserid(String userid) {
+		
+		User user = null;
+		
+		SqlSession session = DBUtils.getSession();
+		try {
+			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
+			
+			user = iuserdao.findUserByUserid(userid);
+
+			session.commit();
+
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return user;
+	}
+
 }

@@ -19,7 +19,7 @@ public class App {
 				//.addPipeline(new FilePipeline("D:/hello.txt"))
 				//.addPipeline(new FilePipeline())
 				.addPipeline(new MySQLPipeline())
-				.addPipeline(new ConsolePipeline())
+				//.addPipeline(new ConsolePipeline())
 				// 开启5个线程抓取
 				.thread(1)
 				// 启动爬虫
