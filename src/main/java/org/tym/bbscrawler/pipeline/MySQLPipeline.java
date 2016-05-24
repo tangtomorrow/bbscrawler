@@ -1,5 +1,6 @@
 package org.tym.bbscrawler.pipeline;
 
+import org.tym.bbscrawler.App;
 import org.tym.bbscrawler.dao.IUserDAO;
 import org.tym.bbscrawler.dao.impl.UserDAOImpl;
 import org.tym.bbscrawler.model.User;
@@ -16,6 +17,7 @@ public class MySQLPipeline implements Pipeline {
 		IUserDAO userDAO = new UserDAOImpl();
 		if (userDAO.findUserByUserid(user.getUserid()) == null) {
 			userDAO.insertUser(user);
+			App.totalCount++;
 		} else {
 			System.out.println(user.getUserid());
 		}
