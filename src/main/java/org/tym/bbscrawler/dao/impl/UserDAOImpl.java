@@ -24,7 +24,6 @@ public class UserDAOImpl implements IUserDAO {
 		}
 	}
 
-	@Override
 	public User findUserByUserid(String userid) {
 		
 		User user = null;
