@@ -39,8 +39,7 @@
 			#life,
 			#moderators
 			 -->
-			 
-			
+		
 			#{userid,jdbcType=VARCHAR},
 			#{username,jdbcType=VARCHAR},
 			#{loginTimes,jdbcType=INTEGER},
@@ -62,7 +61,15 @@
 		(id,userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators) 
 		 -->
 		 *
-		from user where userid=#{userid}
+		from user where userid = #{userid}
 	</select>
+	
+	<update id="updateUser" parameterType="User">  
+        update user 
+        set username = #{username}, logintimes = #{loginTimes}, postarticles = #{postArticles},
+        title = #{title}, constellation = #{constellation}, lastlogintime = #{lastLoginTime}, lastloginip = #{lastLoginIp}, 
+        experience = #{experience}, performance = #{performance}, life = #{life}, moderators = #{moderators}   
+        where userid = #{userid}  
+    </update> 
 	
 </mapper>

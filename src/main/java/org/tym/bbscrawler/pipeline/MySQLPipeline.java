@@ -15,11 +15,17 @@ public class MySQLPipeline implements Pipeline {
 		User user = resultItems.get("user");
 
 		IUserDAO userDAO = new UserDAOImpl();
-		if (userDAO.findUserByUserid(user.getUserid()) == null) {
+		// 查找数据库中是否已有该userid对应的用户
+		User userExist = userDAO.findUserByUserid(user.getUserid());
+		if (userExist == null) {
+			// 如果用户不存在
 			userDAO.insertUser(user);
 			App.totalCount++;
+		} else if (!user.equals(userExist)) {
+			// 如果用户存在，但网页数据更新过
+			userDAO.updateUser(user);
 		} else {
-			System.out.println(user.getUserid());
+			System.out.println("**********\t" + user.getUserid() + "\texists");
 		}
 
 	}
