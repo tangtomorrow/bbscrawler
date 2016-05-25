@@ -3,6 +3,7 @@ package org.tym.bbscrawler.model;
 import java.sql.Timestamp;
 
 public class User {
+
 	private int id;
 	private String userid; // ID
 	private String username; // 昵称
@@ -19,8 +20,8 @@ public class User {
 	private int life; // 生命力
 
 	private String moderators; // 担任版主的版面（使用,隔开）
-	
-	public static final int UnToldExperience = -1;	//“不告诉你”的经验值，默认－1
+
+	public static final int UnToldExperience = -1; // “不告诉你”的经验值，默认－1
 
 	public String getUserid() {
 		return userid;
@@ -117,7 +118,15 @@ public class User {
 	public void setLife(int life) {
 		this.life = life;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
@@ -130,11 +139,83 @@ public class User {
 		return sb.toString();
 	}
 
-	public int getId() {
-		return id;
+	/*
+	 * 排除id
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (constellation == null) {
+			if (other.constellation != null)
+				return false;
+		} else if (!constellation.equals(other.constellation))
+			return false;
+		if (experience != other.experience)
+			return false;
+		if (lastLoginIp == null) {
+			if (other.lastLoginIp != null)
+				return false;
+		} else if (!lastLoginIp.equals(other.lastLoginIp))
+			return false;
+		if (lastLoginTime == null) {
+			if (other.lastLoginTime != null)
+				return false;
+		} else if (!lastLoginTime.equals(other.lastLoginTime))
+			return false;
+		if (life != other.life)
+			return false;
+		if (loginTimes != other.loginTimes)
+			return false;
+		if (moderators == null) {
+			if (other.moderators != null)
+				return false;
+		} else if (!moderators.equals(other.moderators))
+			return false;
+		if (performance != other.performance)
+			return false;
+		if (postArticles != other.postArticles)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (userid == null) {
+			if (other.userid != null)
+				return false;
+		} else if (!userid.equals(other.userid))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((constellation == null) ? 0 : constellation.hashCode());
+		result = prime * result + experience;
+		result = prime * result + ((lastLoginIp == null) ? 0 : lastLoginIp.hashCode());
+		result = prime * result + ((lastLoginTime == null) ? 0 : lastLoginTime.hashCode());
+		result = prime * result + life;
+		result = prime * result + loginTimes;
+		result = prime * result + ((moderators == null) ? 0 : moderators.hashCode());
+		result = prime * result + performance;
+		result = prime * result + postArticles;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
+
 }
