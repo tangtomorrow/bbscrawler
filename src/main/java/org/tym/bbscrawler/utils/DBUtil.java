@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class DBUtils {
+public class DBUtil {
 	
 	private static SqlSessionFactory sqlSessionFactory;
 	private static Reader reader;

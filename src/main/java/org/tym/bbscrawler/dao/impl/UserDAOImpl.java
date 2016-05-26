@@ -3,14 +3,14 @@ package org.tym.bbscrawler.dao.impl;
 import org.apache.ibatis.session.SqlSession;
 import org.tym.bbscrawler.dao.IUserDAO;
 import org.tym.bbscrawler.model.User;
-import org.tym.bbscrawler.utils.DBUtils;
+import org.tym.bbscrawler.utils.DBUtil;
 
 public class UserDAOImpl implements IUserDAO {
 
 	public boolean insertUser(User user) {
 		boolean flag = true;
 
-		SqlSession session = DBUtils.getSession();
+		SqlSession session = DBUtil.getSession();
 		try {
 			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
 			iuserdao.insertUser(user);
@@ -32,7 +32,7 @@ public class UserDAOImpl implements IUserDAO {
 
 		User user = null;
 
-		SqlSession session = DBUtils.getSession();
+		SqlSession session = DBUtil.getSession();
 		try {
 			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
 
@@ -52,7 +52,7 @@ public class UserDAOImpl implements IUserDAO {
 
 	public boolean updateUser(User user) {
 		boolean flag = true;
-		SqlSession session = DBUtils.getSession();
+		SqlSession session = DBUtil.getSession();
 		try {
 			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
 
