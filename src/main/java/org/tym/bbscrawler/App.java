@@ -18,7 +18,7 @@ public class App {
 	public static void main(String[] args) {
 
 		Spider.create(new BBSUserPageProcessor())
-				.addUrl("http://bbs.nju.edu.cn/board?board=TaiZhou")
+				.addUrl("http://bbs.nju.edu.cn/board?board=Pictures")
 				//.addPipeline(new FilePipeline("D:/hello.txt"))
 				//.addPipeline(new FilePipeline())
 				.addPipeline(new MySQLPipeline())
