@@ -71,4 +71,24 @@ public class UserDAOImpl implements IUserDAO {
 		return flag;
 	}
 
+	public int getUserNum() {
+		int count = 0;
+		SqlSession session = DBUtil.getSession();
+		try {
+			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
+
+			count = iuserdao.getUserNum();
+
+			session.commit();
+
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return count;
+	}
+
 }

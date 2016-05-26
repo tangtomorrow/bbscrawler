@@ -2,6 +2,8 @@ package org.tym.bbscrawler;
 
 import java.util.List;
 
+import org.tym.bbscrawler.dao.IUserDAO;
+import org.tym.bbscrawler.dao.impl.UserDAOImpl;
 import org.tym.bbscrawler.pageprocessor.BBSUserPageProcessor;
 import org.tym.bbscrawler.pipeline.ConsolePipeline;
 import org.tym.bbscrawler.pipeline.MySQLPipeline;
@@ -15,8 +17,8 @@ import us.codecraft.webmagic.pipeline.FilePipeline;
  *
  */
 public class App {
-	// 插入数据的记录数
-	public static int totalCount = 0;
+	// 已有数据的记录数
+	public static int totalCount = new UserDAOImpl().getUserNum();
 
 	public static void main(String[] args) {
 
@@ -27,6 +29,7 @@ public class App {
 		 * FilePipeline()) .addPipeline(new MySQLPipeline()) .addPipeline(new
 		 * ConsolePipeline()) // 开启5个线程抓取 .thread(1) // 启动爬虫 .run();
 		 */
+		
 		startSpider();
 	}
 
@@ -44,6 +47,5 @@ public class App {
 		}
 
 		spider.addPipeline(new MySQLPipeline()).thread(1).run();
-
 	}
 }

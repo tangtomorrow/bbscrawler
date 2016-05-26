@@ -71,5 +71,9 @@
         experience = #{experience}, performance = #{performance}, life = #{life}, moderators = #{moderators}   
         where userid = #{userid}  
     </update> 
+    
+    <select id="getUserNum" resultType="java.lang.Integer">
+    	select count(*) from user;
+    </select>
 	
 </mapper>

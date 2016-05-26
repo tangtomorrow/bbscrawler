@@ -21,7 +21,7 @@ public class MySQLPipeline implements Pipeline {
 			// 如果用户不存在
 			userDAO.insertUser(user);
 			App.totalCount++;
-			System.out.println("[Insert]\t" + user.getUserid());
+			System.out.println("[Insert]\t" + user.getUserid() + "\t" + "Current Count: " + App.totalCount);
 		} else if (!user.equals(userExist)) {
 			System.out.println("[Update]\t" + user.getUserid());
 			// 如果用户存在，但网页数据更新过

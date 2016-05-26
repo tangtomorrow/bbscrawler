@@ -11,4 +11,7 @@ public interface IUserDAO {
 	
 	// 根据userid更新其他字段
 	public boolean updateUser(User user);
+	
+	// 获取当前已保存的用户数
+	public int getUserNum();
 }
