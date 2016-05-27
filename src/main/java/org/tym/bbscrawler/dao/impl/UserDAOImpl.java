@@ -28,7 +28,6 @@ public class UserDAOImpl implements IUserDAO {
 		return flag;
 	}
 	
-	@Override
 	public User findUserById(int id) {
 		User user = null;
 		
