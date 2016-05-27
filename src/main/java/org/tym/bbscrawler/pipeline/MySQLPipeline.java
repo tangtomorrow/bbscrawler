@@ -22,10 +22,13 @@ public class MySQLPipeline implements Pipeline {
 			userDAO.insertUser(user);
 			App.totalCount++;
 			System.out.println("[Insert]\t" + user.getUserid() + "\t" + "Current Count: " + App.totalCount);
+			// 注释掉更新的部分，更新由BBSUtil.updateAllUsers()接管
+			/*
 		} else if (!user.equals(userExist)) {
 			System.out.println("[Update]\t" + user.getUserid());
 			// 如果用户存在，但网页数据更新过
 			userDAO.updateUser(user);
+			*/
 		} else {
 			System.out.println("[**********]\t" + user.getUserid() + "\texists");
 		}
