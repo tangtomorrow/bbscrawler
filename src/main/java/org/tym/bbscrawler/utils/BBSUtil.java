@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -12,6 +13,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+import org.tym.bbscrawler.constant.BBSUrl;
+import org.tym.bbscrawler.dao.IUserDAO;
+import org.tym.bbscrawler.dao.impl.UserDAOImpl;
+import org.tym.bbscrawler.model.User;
 
 public class BBSUtil {
 	/**
@@ -39,5 +44,40 @@ public class BBSUtil {
 		}
 
 		return boardList;
+	}
+	
+	/**
+	 * 更新数据库表中的所有纪录
+	 */
+	public static void updateAllUsers() {
+		IUserDAO userDAO = new UserDAOImpl();
+		
+		// 已有数据的记录数
+		int totalCount = userDAO.getUserNum();
+		
+		for (int i = 1; i <= totalCount; i++) {
+			long start = new Date().getTime();
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			User userExist = userDAO.findUserById(i);
+			//System.out.println(userExist);
+			if (userExist != null) {
+				String userid = userExist.getUserid();
+				User user = NetUtil.parseUserUrl(BBSUrl.UserPrefix + userid);
+				if (!user.equals(userExist)) {
+					System.out.println("[Update]:\t" + user.getUserid());
+					userDAO.updateUser(user);
+				}
+			}
+			
+			long end = new Date().getTime();
+			//System.out.println(end - start + "ms");
+			
+		}
 	}
 }
