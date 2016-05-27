@@ -64,6 +64,12 @@
 		from user where userid = #{userid}
 	</select>
 	
+	<select id="findUserById" parameterType="Integer" resultMap="userResultMap" >
+		select 
+		 *
+		from user where id = #{id}
+	</select>
+	
 	<update id="updateUser" parameterType="User">  
         update user 
         set username = #{username}, logintimes = #{loginTimes}, postarticles = #{postArticles},
@@ -72,7 +78,7 @@
         where userid = #{userid}  
     </update> 
     
-    <select id="getUserNum" resultType="java.lang.Integer">
+    <select id="getUserNum" resultType="Integer">
     	select count(*) from user;
     </select>
 	

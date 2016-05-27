@@ -6,6 +6,9 @@ public interface IUserDAO {
 	// 插入user
 	public boolean insertUser(User user);
 	
+	// 根据id查找User
+	public User findUserById(int id);
+	
 	// 根据userid查找User
 	public User findUserByUserid(String userid);
 	
