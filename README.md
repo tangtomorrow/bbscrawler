@@ -1,1 +1,9 @@
-NJUBBS User Crawler!
+NJUBBS Crawler
+=
+
+### 爬取小百合信息
+
+目前已完成功能
+
+* 爬取用户信息，并存入数据库
+* 更新用户信息
