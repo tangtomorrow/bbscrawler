@@ -42,4 +42,42 @@
 			<version>3.3.0</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>bbscrawler</finalName>
+		<plugins>
+			<!-- Maven Assembly Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<!-- append assembly id in release file name -->
+					<appendAssemblyId>true</appendAssemblyId>
+					<!-- 
+					<descriptors>
+						<descriptor>package.xml</descriptor>
+					</descriptors>
+					 -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>org.tym.bbscrawler.App</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

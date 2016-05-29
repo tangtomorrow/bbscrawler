@@ -1,6 +1,5 @@
 package org.tym.bbscrawler.utils;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.io.Resources;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+
 import org.tym.bbscrawler.constant.BBSUrl;
 import org.tym.bbscrawler.dao.IUserDAO;
 import org.tym.bbscrawler.dao.impl.UserDAOImpl;
@@ -28,7 +29,12 @@ public class BBSUtil {
 
 		InputStream in = null;
 		try {
-			in = new FileInputStream("bbsboard/Boards.xml");
+			//in = new FileInputStream("bbsboard/Boards.xml");
+			/*
+			 * 因为maven打包后资源路径会变，因此使用了mybatis的读取资源的工具
+			 * 具体实现原理再看～
+			 */
+			in = Resources.getResourceAsStream("bbsboard/Boards.xml");
 			Document doc = Jsoup.parse(in, "UTF-8", "", Parser.xmlParser());
 			Elements elements = doc.select("Board");
 			if (elements.size() > 0) {
