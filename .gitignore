@@ -62,7 +62,7 @@ build/
 ## .gitignore for eclipse
  
 *.pydevproject
-.project
+#.project
 .metadata
 bin/**
 tmp/**
@@ -72,7 +72,7 @@ tmp/**/*
 *.swp
 *~.nib
 local.properties
-.classpath
+#.classpath
 .settings/
 .loadpath
  
