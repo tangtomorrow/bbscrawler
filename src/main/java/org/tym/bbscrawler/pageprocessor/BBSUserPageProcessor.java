@@ -25,17 +25,20 @@ public class BBSUserPageProcessor implements PageProcessor {
 		return site;
 	}
 
-	public void process(Page page) {		
+	public void process(Page page) {	
 		if (page.getUrl().regex(URL_USER).match()) {
 			/*
 			 * 获取用户信息部分
 			 * 并放入结果集　
 			 */
 			String content = page.getHtml().xpath("//textarea").get();
-			int index = content.lastIndexOf("</textarea>");
-			content = content.substring(21, index);
-			User user = StringUtil.parseUser(StringUtil.formatContent(content));
-			page.putField("user", user);
+			if (content != null) {
+				int index = content.lastIndexOf("</textarea>");
+				content = content.substring(21, index);
+				User user = StringUtil.parseUser(StringUtil.formatContent(content));
+				page.putField("user", user);
+			}
+
 		} else {
 			page.addTargetRequests(page.getHtml().links().regex(URL_ALL).all());
 			page.setSkip(true);

@@ -64,7 +64,7 @@
 		from user where userid = #{userid}
 	</select>
 	
-	<select id="findUserById" parameterType="Integer" resultMap="userResultMap" >
+	<select id="findUserById" parameterType="Integer" resultMap="userResultMap">
 		select 
 		 *
 		from user where id = #{id}
@@ -80,6 +80,10 @@
     
     <select id="getUserNum" resultType="Integer">
     	select count(*) from user;
+    </select>
+    
+    <select id="queryAllUsers" resultMap="userResultMap">
+    	select * from user;
     </select>
 	
 </mapper>

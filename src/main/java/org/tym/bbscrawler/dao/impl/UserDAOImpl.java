@@ -1,5 +1,7 @@
 package org.tym.bbscrawler.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.tym.bbscrawler.dao.IUserDAO;
 import org.tym.bbscrawler.model.User;
@@ -99,6 +101,27 @@ public class UserDAOImpl implements IUserDAO {
 			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
 
 			count = iuserdao.getUserNum();
+			
+			session.commit();
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return count;
+	}
+	
+	/*
+	public List<User> queryUsersLimit(int startIndex, int count) {
+		List<User> users = null;
+		
+		SqlSession session = DBUtil.getSession();
+		try {
+			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
+
+			users = iuserdao.queryUsersLimit(startIndex, count);
 
 			session.commit();
 
@@ -109,7 +132,29 @@ public class UserDAOImpl implements IUserDAO {
 			session.close();
 		}
 		
-		return count;
+		return users;
+	}
+	*/
+	
+	public List<User> queryAllUsers() {
+		List<User> users = null;
+		
+		SqlSession session = DBUtil.getSession();
+		try {
+			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
+
+			users = iuserdao.queryAllUsers();
+
+			session.commit();
+
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return users;
 	}
 
 }

@@ -2,6 +2,8 @@ package org.tym.bbscrawler.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,9 +12,12 @@ import org.tym.bbscrawler.model.User;
 import org.tym.bbscrawler.utils.StringUtil;
 
 public class IUserDAOTest {
+	
+	public static IUserDAO userdao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		userdao = new UserDAOImpl();
 	}
 
 	@AfterClass
@@ -20,9 +25,9 @@ public class IUserDAOTest {
 	}
 
 	@Test
-	public void test() {
+	public void testInsertUser() {
 		User user = new User();
-		user.setUserid("Opus");
+		user.setUserid("ttttttt");
 		user.setUsername("xxx");
 		user.setLoginTimes(1822);
 		user.setPostArticles(289);
@@ -35,8 +40,20 @@ public class IUserDAOTest {
 		user.setLife(701);
 		user.setModerators(null);
 		
-		IUserDAO iuserdao = new UserDAOImpl();
-		iuserdao.insertUser(user);
+		//userdao.insertUser(user);
+	}
+	
+	@Test
+	public void testQueryAllUsers() {
+		List<User> users = userdao.queryAllUsers();
+		for (User user : users) {
+			System.out.println(user);
+		}
+	}
+	
+	@Test
+	public void testGetUserNum() {
+		System.out.println(userdao.getUserNum());
 	}
 
 }
