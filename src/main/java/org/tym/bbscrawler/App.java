@@ -1,5 +1,6 @@
 package org.tym.bbscrawler;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.tym.bbscrawler.constant.BBSUrl;
@@ -30,6 +31,8 @@ public class App {
 		// Add urls
 		List<String> boardList = BBSUtil.getAllBoardNames();
 		if (boardList != null && boardList.size() > 0) {
+			// 逆序添加url
+			Collections.reverse(boardList);
 			for (String boardName : boardList) {
 				spider.addUrl(BBSUrl.BoardPrefix + boardName);
 				//System.out.println(BBSUrl.BoardPrefix + boardName);
