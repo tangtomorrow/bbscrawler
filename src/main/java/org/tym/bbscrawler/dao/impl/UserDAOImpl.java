@@ -9,25 +9,27 @@ import org.tym.bbscrawler.utils.DBUtil;
 
 public class UserDAOImpl implements IUserDAO {
 
-	public boolean insertUser(User user) {
-		boolean flag = true;
+	public int insertUser(User user) {
+		//boolean flag = true;
+		int id = 0;
 
 		SqlSession session = DBUtil.getSession();
 		try {
 			IUserDAO iuserdao = session.getMapper(IUserDAO.class);
-			iuserdao.insertUser(user);
+			id = iuserdao.insertUser(user);
 
 			session.commit();
 
 		} catch (Exception e) {
 			session.rollback();
-			flag = false;
+			//flag = false;
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 
-		return flag;
+		return id;
+		//return flag;
 	}
 	
 	public User findUserById(int id) {

@@ -6,7 +6,7 @@ import org.tym.bbscrawler.model.User;
 
 public interface IUserDAO {
 	// 插入user
-	public boolean insertUser(User user);
+	public int insertUser(User user);
 	
 	// 根据id查找User
 	public User findUserById(int id);
