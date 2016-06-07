@@ -1,9 +1,10 @@
 package org.tym.bbscrawler.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
-
+public class User implements Serializable {
+	private static final long serialVersionUID = -3965172852494833678L;
 	private int id;
 	private String userid; // ID
 	private String username; // 昵称

@@ -3,11 +3,10 @@ package org.tym.bbscrawler;
 import java.util.List;
 
 import org.tym.bbscrawler.constant.BBSUrl;
-import org.tym.bbscrawler.dao.impl.UserDAOImpl;
 import org.tym.bbscrawler.pageprocessor.BBSUserPageProcessor;
-import org.tym.bbscrawler.pipeline.ConsolePipeline;
 import org.tym.bbscrawler.pipeline.MySQLPipeline;
 import org.tym.bbscrawler.utils.BBSUtil;
+import org.tym.bbscrawler.utils.ServiceUtil;
 
 import us.codecraft.webmagic.Spider;
 
@@ -17,7 +16,7 @@ import us.codecraft.webmagic.Spider;
  */
 public class App {
 	// 已有数据的记录数
-	public static int totalCount = new UserDAOImpl().getUserNum();
+	public static int totalCount = ServiceUtil.getUserService().getUserNum();
 
 	public static void main(String[] args) {
 		
