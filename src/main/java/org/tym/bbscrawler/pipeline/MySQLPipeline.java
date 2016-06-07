@@ -1,9 +1,8 @@
 package org.tym.bbscrawler.pipeline;
 
 import org.tym.bbscrawler.App;
-import org.tym.bbscrawler.dao.IUserDAO;
-import org.tym.bbscrawler.dao.impl.UserDAOImpl;
 import org.tym.bbscrawler.model.User;
+import org.tym.bbscrawler.utils.ServiceUtil;
 
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -14,12 +13,11 @@ public class MySQLPipeline implements Pipeline {
 	public void process(ResultItems resultItems, Task task) {
 		User user = resultItems.get("user");
 
-		IUserDAO userDAO = new UserDAOImpl();
 		// 查找数据库中是否已有该userid对应的用户
-		User userExist = userDAO.findUserByUserid(user.getUserid());
+		User userExist = ServiceUtil.getUserService().findUserByUserid(user.getUserid());
 		if (userExist == null) {
 			// 如果用户不存在
-			userDAO.insertUser(user);
+			ServiceUtil.getUserService().insertUser(user);
 			App.totalCount++;
 			System.out.println("[Insert]\t" + user.getUserid() + "\t" + "Current Count: " + App.totalCount);
 			// 注释掉更新的部分，更新由BBSUtil.updateAllUsers()接管
