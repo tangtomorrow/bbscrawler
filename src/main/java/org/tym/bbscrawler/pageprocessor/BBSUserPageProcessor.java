@@ -1,5 +1,6 @@
 package org.tym.bbscrawler.pageprocessor;
 
+import org.tym.bbscrawler.constant.BBSConfig;
 import org.tym.bbscrawler.model.User;
 import org.tym.bbscrawler.utils.NetUtil;
 import org.tym.bbscrawler.utils.StringUtil;
@@ -19,7 +20,7 @@ public class BBSUserPageProcessor implements PageProcessor {
 	//public static final String URL_POST = "http://bbs\\.nju\\.edu\\.cn/.*bbstcon.+";
 
 	// 部分一：抓取网站的相关配置，包括编码、抓取间隔、重试次数等
-	private Site site = Site.me().setDomain("bbs.nju.edu.cn").setRetryTimes(3).setSleepTime(500).setUserAgent(NetUtil.UserAgent);
+	private Site site = Site.me().setDomain("bbs.nju.edu.cn").setRetryTimes(3).setSleepTime(BBSConfig.INTERVAL).setUserAgent(NetUtil.UserAgent);
 
 	public Site getSite() {
 		return site;

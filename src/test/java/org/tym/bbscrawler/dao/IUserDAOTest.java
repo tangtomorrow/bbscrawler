@@ -24,7 +24,7 @@ public class IUserDAOTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test
+	//@Test
 	public void testInsertUser() {
 		User user = new User();
 		user.setUserid("ttttttt");
@@ -43,7 +43,7 @@ public class IUserDAOTest {
 		//userdao.insertUser(user);
 	}
 	
-	@Test
+	//@Test
 	public void testQueryAllUsers() {
 		List<User> users = userdao.queryAllUsers();
 		for (User user : users) {
