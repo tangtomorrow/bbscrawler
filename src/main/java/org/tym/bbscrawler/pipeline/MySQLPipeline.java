@@ -1,5 +1,7 @@
 package org.tym.bbscrawler.pipeline;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tym.bbscrawler.App;
 import org.tym.bbscrawler.model.User;
 import org.tym.bbscrawler.utils.ServiceUtil;
@@ -9,6 +11,8 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 public class MySQLPipeline implements Pipeline {
+	 
+	final Logger logger = LoggerFactory.getLogger(MySQLPipeline.class);
 
 	public void process(ResultItems resultItems, Task task) {
 		User user = resultItems.get("user");
@@ -19,7 +23,8 @@ public class MySQLPipeline implements Pipeline {
 			// 如果用户不存在
 			ServiceUtil.getUserService().insertUser(user);
 			App.totalCount++;
-			System.out.println("[Insert]\t" + user.getUserid() + "\t" + "Current Count: " + App.totalCount);
+			//System.out.println("[Insert]\t" + user.getUserid() + "\t" + "Current Count: " + App.totalCount);
+			logger.info("[Insert:\t]{}\t{}", user.getUserid(), App.totalCount);
 			// 注释掉更新的部分，更新由BBSUtil.updateAllUsers()接管
 			/*
 		} else if (!user.equals(userExist)) {
@@ -28,7 +33,8 @@ public class MySQLPipeline implements Pipeline {
 			userDAO.updateUser(user);
 			*/
 		} else {
-			System.out.println("[**********]\t" + user.getUserid() + "\texists");
+			//System.out.println("[**********]\t" + user.getUserid() + "\texists");
+			logger.info("[Exist:]\t{}", user.getUserid());
 		}
 
 	}
