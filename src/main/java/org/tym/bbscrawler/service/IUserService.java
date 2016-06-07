@@ -27,4 +27,7 @@ public interface IUserService {
 	
 	// 根据id删除用户
 	public int deleteUserById(int id);
+	
+	// 根据版面名查询版主
+	public List<User> qureyModeratorsByBoard(String board);
 }

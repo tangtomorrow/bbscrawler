@@ -6,88 +6,90 @@
 <mapper namespace="org.tym.bbscrawler.dao.IUserDAO">
 	<resultMap type="User" id="userResultMap">
 		<!-- 属性名和数据库列名映射 -->
-        <id property="id" column="id"  />
-        <result property="userid" column="userid"  />
-        <result property="username" column="username"  />
-        <result property="loginTimes" column="logintimes"  />
-        <result property="postArticles" column="postarticles"  />
-        <result property="title" column="title"  />
-        <result property="constellation" column="constellation"  />
-        <result property="lastLoginTime" column="lastlogintime"  />
-        <result property="lastLoginIp" column="lastloginip"  />
-        <result property="experience" column="experience"  />
-        <result property="performance" column="performance"  />
-        <result property="life" column="life"  />
-        <result property="moderators" column="moderators"  />
+		<id property="id" column="id" />
+		<result property="userid" column="userid" />
+		<result property="username" column="username" />
+		<result property="loginTimes" column="logintimes" />
+		<result property="postArticles" column="postarticles" />
+		<result property="title" column="title" />
+		<result property="constellation" column="constellation" />
+		<result property="lastLoginTime" column="lastlogintime" />
+		<result property="lastLoginIp" column="lastloginip" />
+		<result property="experience" column="experience" />
+		<result property="performance" column="performance" />
+		<result property="life" column="life" />
+		<result property="moderators" column="moderators" />
 	</resultMap>
-	
-	<insert id="insertUser" parameterType="org.tym.bbscrawler.model.User" useGeneratedKeys="true" keyProperty="id" >
+
+	<insert id="insertUser" parameterType="org.tym.bbscrawler.model.User"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into user
-		(userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators) value
+		(userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators)
+		value
 		(
-			<!-- 
-			#userid,
-			#username,
-			#loginTimes,
-			#postArticles,
-			#title,
-			#constellation,
-			#lastLoginTime,
-			#lastLoginIp,
-			#experience,
-			#performance,
-			#life,
-			#moderators
-			 -->
-		
-			#{userid,jdbcType=VARCHAR},
-			#{username,jdbcType=VARCHAR},
-			#{loginTimes,jdbcType=INTEGER},
-			#{postArticles,jdbcType=INTEGER},
-			#{title,jdbcType=VARCHAR},
-			#{constellation,jdbcType=VARCHAR},
-			#{lastLoginTime,jdbcType=TIMESTAMP},
-			#{lastLoginIp,jdbcType=VARCHAR},
-			#{experience,jdbcType=INTEGER},
-			#{performance,jdbcType=INTEGER},
-			#{life,jdbcType=INTEGER},
-			#{moderators,jdbcType=VARCHAR}
+		<!-- #userid, #username, #loginTimes, #postArticles, #title, #constellation, 
+			#lastLoginTime, #lastLoginIp, #experience, #performance, #life, #moderators -->
+
+		#{userid,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{loginTimes,jdbcType=INTEGER},
+		#{postArticles,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{constellation,jdbcType=VARCHAR},
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		#{lastLoginIp,jdbcType=VARCHAR},
+		#{experience,jdbcType=INTEGER},
+		#{performance,jdbcType=INTEGER},
+		#{life,jdbcType=INTEGER},
+		#{moderators,jdbcType=VARCHAR}
 		)
 	</insert>
-	 
-	 <select id="findUserByUserid" parameterType="String" resultMap="userResultMap" >
-		select 
-		<!-- 
-		(id,userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators) 
-		 -->
-		 *
+
+	<select id="findUserByUserid" parameterType="String" resultMap="userResultMap">
+		select
+		<!-- (id,userid,username,logintimes,postarticles,title,constellation,lastlogintime,lastloginip,experience,performance,life,moderators) -->
+		*
 		from user where userid = #{userid}
 	</select>
-	
+
 	<select id="findUserById" parameterType="Integer" resultMap="userResultMap">
-		select 
-		 *
+		select
+		*
 		from user where id = #{id}
 	</select>
-	
-	<update id="updateUser" parameterType="User">  
-        update user 
-        set username = #{username}, logintimes = #{loginTimes}, postarticles = #{postArticles},
-        title = #{title}, constellation = #{constellation}, lastlogintime = #{lastLoginTime}, lastloginip = #{lastLoginIp}, 
-        experience = #{experience}, performance = #{performance}, life = #{life}, moderators = #{moderators}   
-        where userid = #{userid}  
-    </update> 
-    
-    <select id="getUserNum" resultType="Integer">
-    	select count(*) from user;
-    </select>
-    
-    <select id="queryAllUsers" resultMap="userResultMap">
-    	select * from user;
-    </select>
-    
-    <delete id="deleteUserById" parameterType="Integer">
-    	delete from user where id = #{id};
-    </delete>
-	
+
+	<update id="updateUser" parameterType="User">
+		update user
+		set username =
+		#{username}, logintimes = #{loginTimes}, postarticles =
+		#{postArticles},
+		title = #{title}, constellation = #{constellation},
+		lastlogintime =
+		#{lastLoginTime}, lastloginip = #{lastLoginIp},
+		experience = #{experience}, performance = #{performance}, life =
+		#{life},
+		moderators = #{moderators}
+		where userid = #{userid}
+	</update>
+
+	<select id="getUserNum" resultType="Integer">
+		select count(*) from user;
+	</select>
+
+	<select id="queryAllUsers" resultMap="userResultMap">
+		select * from user;
+	</select>
+
+	<delete id="deleteUserById" parameterType="Integer">
+		delete from user where
+		id = #{id};
+	</delete>
+
+	<!-- 模糊查询 -->
+	<select id="qureyModeratorsByBoard" parameterType="String"
+		resultMap="userResultMap">
+		<bind name="boardName" value="'%' + _parameter + '%'" />
+		select * from user where moderators LIKE #{boardName}
+	</select>
+
 </mapper>

@@ -36,4 +36,8 @@ public class UserDAOImpl extends SqlSessionDaoSupport implements IUserDAO {
 		return this.getSqlSession().delete("org.tym.bbscrawler.dao.IUserDAO.deleteUserById", id);
 	}
 
+	public List<User> qureyModeratorsByBoard(String board) {
+		return this.getSqlSession().selectList("org.tym.bbscrawler.dao.IUserDAO.qureyModeratorsByBoard", board);
+	}
+
 }

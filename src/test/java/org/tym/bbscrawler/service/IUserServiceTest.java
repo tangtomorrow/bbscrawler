@@ -1,5 +1,7 @@
 package org.tym.bbscrawler.service;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -66,5 +68,14 @@ public class IUserServiceTest {
 	public void testDeleteUserById() {
 		System.out.println("Test IUserService.deleteUserById()");
 		System.out.println(userService.deleteUserById(27));
+	}
+	
+	@Test
+	public void testQureyModeratorsByBoard() {
+		System.out.println("Test IUserService.qureyModeratorsByBoard()");
+		List<User> users = userService.qureyModeratorsByBoard("TaiZhou");
+		for (User user : users) {
+			System.out.println(user.getUserid());
+		}
 	}
 }

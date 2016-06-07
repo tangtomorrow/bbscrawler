@@ -40,6 +40,10 @@ public class UserServiceImpl implements IUserService {
 	public int deleteUserById(int id) {
 		return userDAO.deleteUserById(id);
 	}
+	
+	public List<User> qureyModeratorsByBoard(String board) {
+		return userDAO.qureyModeratorsByBoard(board);
+	}
 
 	public IUserDAO getUserDAO() {
 		return userDAO;
