@@ -15,6 +15,7 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import org.tym.bbscrawler.constant.BBSUrl;
+import org.tym.bbscrawler.model.LoginInfo;
 import org.tym.bbscrawler.model.User;
 
 public class BBSUtil {
@@ -56,6 +57,7 @@ public class BBSUtil {
 	public static void updateAllUsers() {
 		// 已有数据的记录数
 		int totalCount = ServiceUtil.getUserService().getUserNum();
+		totalCount = 10;
 		
 		for (int i = 1; i <= totalCount; i++) {
 			long start = new Date().getTime();
@@ -74,6 +76,13 @@ public class BBSUtil {
 				if (!user.equals(userExist)) {
 					System.out.println("[Update]:\t" + user.getUserid());
 					ServiceUtil.getUserService().updateUser(user);
+					
+					LoginInfo loginInfo = new LoginInfo();
+					loginInfo.setUserid(user.getUserid());
+					loginInfo.setLoginip(user.getLastLoginIp());
+					if (ServiceUtil.getLoginInfoService().findLoginInfoByUseridLoginip(loginInfo) == -1) {
+						ServiceUtil.getLoginInfoService().insertLoginInfo(loginInfo);
+					}
 				}
 			}
 			
