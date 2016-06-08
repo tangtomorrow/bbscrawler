@@ -8,6 +8,7 @@
 	
 	<typeAliases>
 		<typeAlias type="org.tym.bbscrawler.model.User" alias="User" />
+		<typeAlias type="org.tym.bbscrawler.model.LoginInfo" alias="LoginInfo" />
 	</typeAliases>
 
 	<!--数据源配置 使用mysql数据库 -->
@@ -28,6 +29,7 @@
 		<!--*Mapper.xml装载进来 同等于把“dao”的实现装载进来 -->
 		<!-- -->
 		<mapper resource="mappers/UserMapper.xml" />
+		<mapper resource="mappers/LoginInfoMapper.xml" />
 		<!-- 批量加载mappers -->
 		<!-- <package name=".mappers"/> -->
 	</mappers>

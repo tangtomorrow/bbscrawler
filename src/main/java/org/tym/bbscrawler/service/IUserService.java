@@ -8,7 +8,7 @@ import org.tym.bbscrawler.model.User;
 @Transactional
 public interface IUserService {
 	// 插入user
-	public int insertUser(User user);
+	public void insertUser(User user);
 	
 	// 根据id查找User
 	public User findUserById(int id);

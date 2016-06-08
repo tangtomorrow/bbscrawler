@@ -25,6 +25,21 @@ public class IUserServiceTest {
 	public void testInsertUser() {
 		System.out.println("Test IUserService.insertUser()");
 		User user = NetUtil.parseUserUrl(BBSUrl.UserPrefix + "lifegamer");
+		/*
+		User user = new User();
+		user.setUserid("ttttttt");
+		user.setUsername("xxx");
+		user.setLoginTimes(1822);
+		user.setPostArticles(289);
+		user.setTitle(null);
+		user.setConstellation("狮子座");
+		user.setLastLoginTime(StringUtil.formatDate("Sun May 22 21:37:11 2016"));
+		user.setLastLoginIp("Pic.nju.edu.c");
+		user.setExperience(6501);
+		user.setPerformance(8);
+		user.setLife(701);
+		user.setModerators(null);
+		*/
 		System.out.println(user);
 		userService.insertUser(user);
 		System.out.println(user.getId());

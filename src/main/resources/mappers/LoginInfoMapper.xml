@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这块等于dao接口的实现 namespace必须和接口的类路径一样 -->
+<mapper namespace="org.tym.bbscrawler.dao.ILoginInfoDAO">
+	<resultMap type="LoginInfo" id="loginInfoResultMap">
+		<!-- 属性名和数据库列名映射 -->
+		<id property="id" column="id" />
+		<result property="userid" column="userid" />
+		<result property="loginip" column="loginip" />
+	</resultMap>
+
+	<insert id="insertLoginInfo" parameterType="org.tym.bbscrawler.model.LoginInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into logininfo
+		(userid,loginip)
+		value
+		(
+		#{userid,jdbcType=VARCHAR},
+		#{loginip,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="findLoginInfoByUserid" parameterType="String"
+		resultMap="loginInfoResultMap">
+		select
+		*
+		from logininfo where userid = #{userid}
+	</select>
+
+	<select id="findLoginInfoById" parameterType="Integer"
+		resultMap="loginInfoResultMap">
+		select
+		*
+		from logininfo where id = #{id}
+	</select>
+
+	<select id="findLoginIpByUserid" parameterType="String"
+		resultType="String">
+		select
+		loginip
+		from logininfo where userid = #{userid}
+	</select>
+
+	<select id="findLoginInfoByUseridLoginip" parameterType="org.tym.bbscrawler.model.LoginInfo"
+		resultType="Integer">
+		<!-- mybatis在不存在时返回null（"Integer"），不能直接转成int，需要使用MySQL的内置函数返回默认值－1 -->
+		select
+		IFNULL(MAX(id), -1) as id
+		from logininfo where userid = #{userid,jdbcType=VARCHAR} and loginip = #{loginip,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

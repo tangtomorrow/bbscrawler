@@ -12,7 +12,6 @@
 		</layout>
 	</appender>
 
-<!-- 
 	<logger name="java.sql.Connection">
 		<level value="debug" />
 		<appender-ref ref="sqlappender" />
@@ -27,14 +26,14 @@
 		<level value="debug" />
 		<appender-ref ref="sqlappender" />
 	</logger>
- -->
+
 	<logger name="java.sql.PreparedStatement">
 		<level value="debug" />
 		<appender-ref ref="sqlappender" />
 	</logger>
 
 	<root>
-		<level value="INFO" />
+		<level value="info" />
 		<appender-ref ref="sqlappender" />
 	</root>
 </log4j:configuration>

@@ -5,7 +5,7 @@ create database lilybbs character set utf8;
 use lilybbs;
 
 create table user (
-	id int auto_increment not null primary key ,
+	id int auto_increment not null primary key,
 	userid varchar(50) not null,
 	username varchar(50) not null,
 	logintimes int not null,
@@ -18,4 +18,10 @@ create table user (
 	performance int not null,
 	life int not null,
 	moderators varchar(500)
+);
+
+create table logininfo (
+	id int auto_increment not null primary key,
+	userid varchar(50) not null,
+	loginip varchar(50) not null
 );
